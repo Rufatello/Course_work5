@@ -2,6 +2,7 @@ from typing import Any
 from googleapiclient.discovery import build
 import psycopg2
 
+
 def get_youtube_data(api_key: str, channel_ids: list[str]) -> list[dict[str, Any]]:
     """Получение данных о каналах и видео с помощью API YouTube."""
 
@@ -9,7 +10,7 @@ def get_youtube_data(api_key: str, channel_ids: list[str]) -> list[dict[str, Any
     data = []
     video_data = []
     next_page_token = None
-    #внешний цикл пробегается по id каналу
+    # внешний цикл пробегается по id каналу
     for chanel_id in channel_ids:
         # для каждого канала получаем информацию по каналу
         channel_data = youtube.channels().list(part='snippet, statistics', id=chanel_id).execute()
@@ -27,8 +28,9 @@ def get_youtube_data(api_key: str, channel_ids: list[str]) -> list[dict[str, Any
             'channel': channel_data['items'][0],
             'videos': video_data
         })
-#a
+        # a
         return data
+
 
 def create_database(database_name: str, params: dict) -> None:
     """создание БД и таблиц для сохранения данных о каналах и видео"""
@@ -65,5 +67,9 @@ def create_database(database_name: str, params: dict) -> None:
                 video_url TEXT
             )
         """)
+    conn.commit()
+    conn.close()
+
+
 def save_data_to_database(data: list[dict[str, Any]], database_name: str, params: dict):
     """Сохранить данные о каналах и видео в БД"""
