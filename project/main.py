@@ -9,13 +9,13 @@ def main():
     # данные об ид каналах которые будем получать
     channel_ids = [
         'UC-OVMPlMA3-YCIeg4z5z23A',  # moscowpython
-        'UCwHL6WHUarjGfUM_586me8w',  # highload
+        # 'UCwHL6WHUarjGfUM_586me8w',  # highload
 
     ]
     params = config()
     data = get_youtube_data(api_key, channel_ids)
     create_database('youtube', params)
-    save_data_to_database(data, 'youtube', params)
+    # save_data_to_database(data, 'youtube', params)
 
 
 if __name__ == '__main__':
