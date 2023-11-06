@@ -7,6 +7,7 @@ def get_youtube_data(api_key: str, channel_ids: list[str]) -> list[dict[str, Any
 
     youtube = build('youtube', 'v3', developerKey=api_key)
 
+a
 def create_database(database_name: str, params: dict) -> None:
     """создание БД и таблиц для сохранения данных о каналах и видео"""
 
